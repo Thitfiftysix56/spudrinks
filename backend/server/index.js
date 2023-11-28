@@ -300,6 +300,13 @@ app.post(process.env.API_PATH +'qrscans', (req, res) => {
   // data === 'แดงโซดา' ? 'Bev009' :
   // data === 'เขียว โซดา' ? 'Bev010' :
   '';
+  const bottom1 = req.body.bottom1;
+  const bottom2 = req.body.bottom2;
+  const bottom3 = req.body.bottom3;
+  const bottom4 = req.body.bottom4;
+  const bottom5 = req.body.bottom5;
+  const bottom6 = req.body.bottom6;
+  console.log("data",data)
   // io.emit('data', data);
 if(ID_Beverage !== '' && userid !== '' && date !== '' && data !== ''){
   // res.send(data);
@@ -314,10 +321,89 @@ if(ID_Beverage !== '' && userid !== '' && date !== '' && data !== ''){
         return res.status(500).json({msg: 'Path RegisUser Server error'})  
       }
       else{
-        return res.status(200).json({msg: 'Insert Ok'})  
+        db.query(
+          "UPDATE bottlevolume SET Volume_Bottle = ? WHERE Id_Bottle = ? ",
+      [bottom1,1],
+          (err, result) => {
+        if (err) {
+          console.log("RegisUser>>>>>> : ",err)
+          return res.status(500).json({msg: 'Path RegisUser Server error'})  
+        }
+        else{
+          // return res.status(200).json({msg: 'Insert Ok'})  
+          db.query(
+            "UPDATE bottlevolume SET Volume_Bottle = ? WHERE Id_Bottle = ? ",
+        [bottom2,2],
+            (err, result) => {
+          if (err) {
+            console.log("RegisUser>>>>>> : ",err)
+            return res.status(500).json({msg: 'Path RegisUser Server error'})  
+          }
+          else{
+            // return res.status(200).json({msg: 'Insert Ok'})  
+            db.query(
+              "UPDATE bottlevolume SET Volume_Bottle = ? WHERE Id_Bottle = ? ",
+          [bottom3,3],
+              (err, result) => {
+            if (err) {
+              console.log("RegisUser>>>>>> : ",err)
+              return res.status(500).json({msg: 'Path RegisUser Server error'})  
+            }
+            else{
+              // return res.status(200).json({msg: 'Insert Ok'})  
+              db.query(
+                "UPDATE bottlevolume SET Volume_Bottle = ? WHERE Id_Bottle = ? ",
+            [bottom4,4],
+                (err, result) => {
+              if (err) {
+                console.log("RegisUser>>>>>> : ",err)
+                return res.status(500).json({msg: 'Path RegisUser Server error'})  
+              }
+              else{
+                // return res.status(200).json({msg: 'Insert Ok'})  
+                db.query(
+                  "UPDATE bottlevolume SET Volume_Bottle = ? WHERE Id_Bottle = ? ",
+              [bottom5,5],
+                  (err, result) => {
+                if (err) {
+                  console.log("RegisUser>>>>>> : ",err)
+                  return res.status(500).json({msg: 'Path RegisUser Server error'})  
+                }
+                else{
+                  // return res.status(200).json({msg: 'Insert Ok'})  
+                  db.query(
+                    "UPDATE bottlevolume SET Volume_Bottle = ? WHERE Id_Bottle = ? ",
+                [bottom6,6],
+                    (err, result) => {
+                  if (err) {
+                    console.log("RegisUser>>>>>> : ",err)
+                    return res.status(500).json({msg: 'Path RegisUser Server error'})  
+                  }
+                  else{
+                    return res.status(200).json({msg: 'Insert Ok'})  
+                    
+                  }
+                },
+                )
+                }
+              },
+              )
+              }
+            },
+            )
+            }
+          },
+          )
+          }
+        },
+        )
+        }
+      },
+      )
       }
     },
     )
+   
 }
 
 
@@ -397,19 +483,109 @@ app.put(process.env.API_PATH +'Addvolum', (req, res) => {
 
 app.post(process.env.API_PATH +'qrscan', (req, res) => {
   const data  = req.body.qrData;
-  // const SOS  = req.body.SOS;
-  // const Transcript  = req.body.Transcript;
-  // Process the QR code data here and send a response
-  const response = `Received QR code data: ${data}`;
-  console.log("data11111",data)
-  res.send(data);
-  // res.send(SOS);
-  // res.send(Transcript);
-  // console.log(Transcript)
-  // console.log(SOS)
-  // io.emit('sos', SOS);
+  const munu  = req.body.munu;
+  const bottom1 = req.body.bottom1;
+  const bottom2 = req.body.bottom2;
+  const bottom3 = req.body.bottom3;
+  const bottom4 = req.body.bottom4;
+  const bottom5 = req.body.bottom5;
+  const bottom6 = req.body.bottom6;
+  // const namebottom1 = req.body.namebottom1;
+  // const namebottom2 = req.body.namebottom2;
+  // const namebottom3 = req.body.namebottom3;
+  // const namebottom4 = req.body.namebottom4;
+  // const namebottom5 = req.body.namebottom5;
+  // const namebottom6 = req.body.namebottom6;
+  // const response = `Received QR code data: ${data}`;
+  // console.log("data11111",data)
+  // res.send(data);
+  // io.emit('data', data);
+if(bottom1 !== ''){
   io.emit('data', data);
-
+  // res.send(data);
+  db.query(
+    "UPDATE bottlevolume SET Volume_Bottle = ? WHERE Id_Bottle = ? ",
+[bottom1,1],
+    (err, result) => {
+  if (err) {
+    console.log("RegisUser>>>>>> : ",err)
+    return res.status(500).json({msg: 'Path RegisUser Server error'})  
+  }
+  else{
+    // return res.status(200).json({msg: 'Insert Ok'})  
+    db.query(
+      "UPDATE bottlevolume SET Volume_Bottle = ? WHERE Id_Bottle = ? ",
+  [bottom2,2],
+      (err, result) => {
+    if (err) {
+      console.log("RegisUser>>>>>> : ",err)
+      return res.status(500).json({msg: 'Path RegisUser Server error'})  
+    }
+    else{
+      // return res.status(200).json({msg: 'Insert Ok'})  
+      db.query(
+        "UPDATE bottlevolume SET Volume_Bottle = ? WHERE Id_Bottle = ? ",
+    [bottom3,3],
+        (err, result) => {
+      if (err) {
+        console.log("RegisUser>>>>>> : ",err)
+        return res.status(500).json({msg: 'Path RegisUser Server error'})  
+      }
+      else{
+        // return res.status(200).json({msg: 'Insert Ok'})  
+        db.query(
+          "UPDATE bottlevolume SET Volume_Bottle = ? WHERE Id_Bottle = ? ",
+      [bottom4,4],
+          (err, result) => {
+        if (err) {
+          console.log("RegisUser>>>>>> : ",err)
+          return res.status(500).json({msg: 'Path RegisUser Server error'})  
+        }
+        else{
+          // return res.status(200).json({msg: 'Insert Ok'})  
+          db.query(
+            "UPDATE bottlevolume SET Volume_Bottle = ? WHERE Id_Bottle = ? ",
+        [bottom5,5],
+            (err, result) => {
+          if (err) {
+            console.log("RegisUser>>>>>> : ",err)
+            return res.status(500).json({msg: 'Path RegisUser Server error'})  
+          }
+          else{
+            // return res.status(200).json({msg: 'Insert Ok'})  
+            db.query(
+              "UPDATE bottlevolume SET Volume_Bottle = ? WHERE Id_Bottle = ? ",
+          [bottom6,6],
+              (err, result) => {
+            if (err) {
+              console.log("RegisUser>>>>>> : ",err)
+              return res.status(500).json({msg: 'Path RegisUser Server error'})  
+            }
+            else{
+              return res.status(200).json({msg: 'Insert Ok'})  
+              
+            }
+          },
+          )
+          }
+        },
+        )
+        }
+      },
+      )
+      }
+    },
+    )
+    }
+  },
+  )
+  }
+},
+)
+}
+  
+  // res.send(data);
+  // io.emit('data', data);
 });
 
 app.listen(app.get('_port'), () =>

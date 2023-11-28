@@ -25,7 +25,8 @@ function PageScanQrCode() {
  const IdUser = JSON.parse(localStorage.getItem('user'))
  const { from ,userid} = location.state
  const [sumAlgohol, setSumAlgohol] = useState([]);
-console.log("result" , result.text)
+ const [volume, setVolume] = useState([])
+console.log("volume" , volume)
 
 // useEffect(() => {
 //   if(IdUser[0].ID_Person !==  ''){
@@ -39,16 +40,158 @@ console.log("result" , result.text)
 //   }
  
 // }, [])
+useEffect(() => {
 
+  Axios.get(process.env.REACT_APP_API + `/GetBottleVolume`)
+  .then((res) => {
+    setVolume(res.data)  
+  })
+  .catch((err) => {
+    console.error(err)
+  })
+
+
+}, [])
 
   const handleScan = data => {
     if (data) {
       if(data.text === "Yellow Hawaii" || data.text === "Kamikaze" || data.text === "Red Lady" || data.text === "wiskey soup" || data.text === "green margarita"){
         navigate('/PageLogin', { replace: true });
       }else{
-        setResult(data);
+        if(data.text === "แดงมะนาวโซดา"){
+            Axios.post(process.env.REACT_APP_API + '/qrscan', {
+          qrData:result.text,
+          userid:userid,
+          // munu:data.text,
+          bottom1:volume[0].Volume_Bottle - 90,
+          bottom2:volume[1].Volume_Bottle,
+          bottom3:volume[2].Volume_Bottle,
+          bottom4:volume[3].Volume_Bottle - 30,
+          bottom5:volume[4].Volume_Bottle - 60,
+          bottom6:volume[5].Volume_Bottle,
+          // namebottom1:volume[0].Name_Bottle,
+          // namebottom2:volume[1].Name_Bottle,
+          // namebottom3:volume[2].Name_Bottle,
+          // namebottom4:volume[3].Name_Bottle,
+          // namebottom5:volume[4].Name_Bottle,
+          // namebottom6:volume[5].Name_Bottle,
+         } )
+              .then((response) => {
+             
+              })
+              .catch((error) => {
+                // Handle any error that occurred during the request
+                console.error(error);
+              });
+              navigate('/', { replace: true });
+        }else if(data.text === "เขียวมะนาวโซดา"){
+          Axios.post(process.env.REACT_APP_API + '/qrscan', {
+            qrData:result.text,
+            userid:userid,
+            // munu:data.text,
+            bottom1:volume[0].Volume_Bottle,
+            bottom2:volume[1].Volume_Bottle - 90,
+            bottom3:volume[2].Volume_Bottle,
+            bottom4:volume[3].Volume_Bottle - 30,
+            bottom5:volume[4].Volume_Bottle - 60,
+            bottom6:volume[5].Volume_Bottle,
+            // namebottom1:volume[0].Name_Bottle,
+            // namebottom2:volume[1].Name_Bottle,
+            // namebottom3:volume[2].Name_Bottle,
+            // namebottom4:volume[3].Name_Bottle,
+            // namebottom5:volume[4].Name_Bottle,
+            // namebottom6:volume[5].Name_Bottle,
+           } )
+                .then((response) => {
+               
+                })
+                .catch((error) => {
+                  // Handle any error that occurred during the request
+                  console.error(error);
+                });
+                navigate('/', { replace: true });
+        }else if(data.text === "สับปะรดมะนาวโซดา"){
+          Axios.post(process.env.REACT_APP_API + '/qrscan', {
+            qrData:result.text,
+            userid:userid,
+            // munu:data.text,
+            bottom1:volume[0].Volume_Bottle ,
+            bottom2:volume[1].Volume_Bottle,
+            bottom3:volume[2].Volume_Bottle - 90,
+            bottom4:volume[3].Volume_Bottle - 30,
+            bottom5:volume[4].Volume_Bottle - 60,
+            bottom6:volume[5].Volume_Bottle,
+            // namebottom1:volume[0].Name_Bottle,
+            // namebottom2:volume[1].Name_Bottle,
+            // namebottom3:volume[2].Name_Bottle,
+            // namebottom4:volume[3].Name_Bottle,
+            // namebottom5:volume[4].Name_Bottle,
+            // namebottom6:volume[5].Name_Bottle,
+           } )
+                .then((response) => {
+               
+                })
+                .catch((error) => {
+                  // Handle any error that occurred during the request
+                  console.error(error);
+                });
+                navigate('/', { replace: true });
+        }else if(data.text === "แดงโซดา"){
+          Axios.post(process.env.REACT_APP_API + '/qrscan', {
+            qrData:result.text,
+            userid:userid,
+            // munu:data.text,
+            bottom1:volume[0].Volume_Bottle - 90,
+            bottom2:volume[1].Volume_Bottle,
+            bottom3:volume[2].Volume_Bottle,
+            bottom4:volume[3].Volume_Bottle - 30,
+            bottom5:volume[4].Volume_Bottle ,
+            bottom6:volume[5].Volume_Bottle,
+            // namebottom1:volume[0].Name_Bottle,
+            // namebottom2:volume[1].Name_Bottle,
+            // namebottom3:volume[2].Name_Bottle,
+            // namebottom4:volume[3].Name_Bottle,
+            // namebottom5:volume[4].Name_Bottle,
+            // namebottom6:volume[5].Name_Bottle,
+           } )
+                .then((response) => {
+               
+                })
+                .catch((error) => {
+                  // Handle any error that occurred during the request
+                  console.error(error);
+                });
+                navigate('/', { replace: true });
+        }else if(data.text === "เขียวโซดา"){
+          Axios.post(process.env.REACT_APP_API + '/qrscan', {
+            qrData:result.text,
+            userid:userid,
+            // munu:data.text,
+            bottom1:volume[0].Volume_Bottle,
+            bottom2:volume[1].Volume_Bottle - 90,
+            bottom3:volume[2].Volume_Bottle,
+            bottom4:volume[3].Volume_Bottle - 30,
+            bottom5:volume[4].Volume_Bottle,
+            bottom6:volume[5].Volume_Bottle,
+            // namebottom1:volume[0].Name_Bottle,
+            // namebottom2:volume[1].Name_Bottle,
+            // namebottom3:volume[2].Name_Bottle,
+            // namebottom4:volume[3].Name_Bottle,
+            // namebottom5:volume[4].Name_Bottle,
+            // namebottom6:volume[5].Name_Bottle,
+           } )
+                .then((response) => {
+               
+                })
+                .catch((error) => {
+                  // Handle any error that occurred during the request
+                  console.error(error);
+                });
+                navigate('/', { replace: true });
+        }
+       
       }
-      
+    
     }
     
   };
@@ -61,18 +204,18 @@ console.log("result" , result.text)
     },
   }));
 
-  Axios.post(process.env.REACT_APP_API + '/qrscan', {
-    qrData:result.text,
-    userid:userid
-   } )
-        .then((response) => {
+  // Axios.post(process.env.REACT_APP_API + '/qrscan', {
+  //   qrData:result.text,
+  //   userid:userid
+  //  } )
+  //       .then((response) => {
        
-        })
-        .catch((error) => {
-          // Handle any error that occurred during the request
-          console.error(error);
-        });
-        navigate('/', { replace: true });
+  //       })
+  //       .catch((error) => {
+  //         // Handle any error that occurred during the request
+  //         console.error(error);
+  //       });
+  //       navigate('/', { replace: true });
 
 // if(result.text !== '' && from === '/PageSelectBeverage'){
 //   Axios.post(process.env.REACT_APP_API + '/qrscan', {

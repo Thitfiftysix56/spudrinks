@@ -25,6 +25,7 @@ function PageScanQrCode() {
  const IdUser = JSON.parse(localStorage.getItem('user'))
  const { from ,userid} = location.state
  const [sumAlgohol, setSumAlgohol] = useState([]);
+ const [volume, setVolume] = useState([])
 console.log("result" , result.text)
 
 // useEffect(() => {
@@ -39,16 +40,161 @@ console.log("result" , result.text)
 //   }
  
 // }, [])
+useEffect(() => {
 
+  Axios.get(process.env.REACT_APP_API + `/GetBottleVolume`)
+  .then((res) => {
+    setVolume(res.data)  
+  })
+  .catch((err) => {
+    console.error(err)
+  })
+
+
+}, [])
 
   const handleScan = data => {
-    if (data) {
-      if(data.text === "Yellow Hawaii" || data.text === "Kamikaze" || data.text === "Red Lady" || data.text === "wiskey soup" || data.text === "green margarita"){
-        navigate('/PageLogin', { replace: true });
-      }else{
-        setResult(data);
-      }
-      
+    if (data !== null) {
+      // if(data.text === "Yellow Hawaii" || data.text === "Kamikaze" || data.text === "Red Lady" || data.text === "wiskey soup" || data.text === "green margarita"){
+      //   navigate('/PageLogin', { replace: true });
+      // }else{
+      //   setResult(data);
+      // }
+      if(data.text === "green margaritaLogin"){
+        Axios.post(process.env.REACT_APP_API + '/qrscans', {
+      qrData:data.text,
+      userid:userid,
+      // munu:data.text,
+      bottom1:volume[0].Volume_Bottle,
+      bottom2:volume[1].Volume_Bottle - 60,
+      bottom3:volume[2].Volume_Bottle,
+      bottom4:volume[3].Volume_Bottle - 30,
+      bottom5:volume[4].Volume_Bottle - 90,
+      bottom6:volume[5].Volume_Bottle - 30,
+      // namebottom1:volume[0].Name_Bottle,
+      // namebottom2:volume[1].Name_Bottle,
+      // namebottom3:volume[2].Name_Bottle,
+      // namebottom4:volume[3].Name_Bottle,
+      // namebottom5:volume[4].Name_Bottle,
+      // namebottom6:volume[5].Name_Bottle,
+     } )
+          .then((response) => {
+         
+          })
+          .catch((error) => {
+            // Handle any error that occurred during the request
+            console.error(error);
+          });
+          navigate('/PageSelectBeverage', { replace: true });
+    }else if(data.text === "Yellow HawaiiLogin"){
+      Axios.post(process.env.REACT_APP_API + '/qrscans', {
+        qrData:data.text,
+        userid:userid,
+        // munu:data.text,
+        bottom1:volume[0].Volume_Bottle,
+        bottom2:volume[1].Volume_Bottle,
+        bottom3:volume[2].Volume_Bottle - 90,
+        bottom4:volume[3].Volume_Bottle - 60,
+        bottom5:volume[4].Volume_Bottle,
+        bottom6:volume[5].Volume_Bottle - 30,
+        // namebottom1:volume[0].Name_Bottle,
+        // namebottom2:volume[1].Name_Bottle,
+        // namebottom3:volume[2].Name_Bottle,
+        // namebottom4:volume[3].Name_Bottle,
+        // namebottom5:volume[4].Name_Bottle,
+        // namebottom6:volume[5].Name_Bottle,
+       } )
+            .then((response) => {
+           
+            })
+            .catch((error) => {
+              // Handle any error that occurred during the request
+              console.error(error);
+            });
+            navigate('/PageSelectBeverage', { replace: true });
+
+    }else if(data.text === "KamikazeLogin"){
+      Axios.post(process.env.REACT_APP_API + '/qrscans', {
+        qrData:data.text,
+        userid:userid,
+        // munu:data.text,
+        bottom1:volume[0].Volume_Bottle,
+        bottom2:volume[1].Volume_Bottle,
+        bottom3:volume[2].Volume_Bottle - 30,
+        bottom4:volume[3].Volume_Bottle,
+        bottom5:volume[4].Volume_Bottle - 30,
+        bottom6:volume[5].Volume_Bottle - 30,
+        // namebottom1:volume[0].Name_Bottle,
+        // namebottom2:volume[1].Name_Bottle,
+        // namebottom3:volume[2].Name_Bottle,
+        // namebottom4:volume[3].Name_Bottle,
+        // namebottom5:volume[4].Name_Bottle,
+        // namebottom6:volume[5].Name_Bottle,
+       } )
+            .then((response) => {
+           
+            })
+            .catch((error) => {
+              // Handle any error that occurred during the request
+              console.error(error);
+            });
+            navigate('/PageSelectBeverage', { replace: true });
+
+    }else if(data.text === "Red LadyLogin"){
+      Axios.post(process.env.REACT_APP_API + '/qrscans', {
+        qrData:data.text,
+        userid:userid,
+        // munu:data.text,
+        bottom1:volume[0].Volume_Bottle - 60,
+        bottom2:volume[1].Volume_Bottle,
+        bottom3:volume[2].Volume_Bottle,
+        bottom4:volume[3].Volume_Bottle,
+        bottom5:volume[4].Volume_Bottle - 120,
+        bottom6:volume[5].Volume_Bottle - 30,
+        // namebottom1:volume[0].Name_Bottle,
+        // namebottom2:volume[1].Name_Bottle,
+        // namebottom3:volume[2].Name_Bottle,
+        // namebottom4:volume[3].Name_Bottle,
+        // namebottom5:volume[4].Name_Bottle,
+        // namebottom6:volume[5].Name_Bottle,
+       } )
+            .then((response) => {
+           
+            })
+            .catch((error) => {
+              // Handle any error that occurred during the request
+              console.error(error);
+            });
+            navigate('/PageSelectBeverage', { replace: true });
+
+    }else if(data.text === "wiskey"){
+      Axios.post(process.env.REACT_APP_API + '/qrscans', {
+        qrData:data.text,
+        userid:userid,
+        // munu:data.text,
+        bottom1:volume[0].Volume_Bottle,
+        bottom2:volume[1].Volume_Bottle,
+        bottom3:volume[2].Volume_Bottle - 90,
+        bottom4:volume[3].Volume_Bottle,
+        bottom5:volume[4].Volume_Bottle - 180,
+        bottom6:volume[5].Volume_Bottle - 30,
+        // namebottom1:volume[0].Name_Bottle,
+        // namebottom2:volume[1].Name_Bottle,
+        // namebottom3:volume[2].Name_Bottle,
+        // namebottom4:volume[3].Name_Bottle,
+        // namebottom5:volume[4].Name_Bottle,
+        // namebottom6:volume[5].Name_Bottle,
+       } )
+            .then((response) => {
+           
+            })
+            .catch((error) => {
+              // Handle any error that occurred during the request
+              console.error(error);
+            });
+            navigate('/PageSelectBeverage', { replace: true });
+
+    }
     }
     
   };
@@ -62,18 +208,18 @@ console.log("result" , result.text)
   }));
 
 
-  Axios.post(process.env.REACT_APP_API + '/qrscans', {
-    qrData:result.text,
-    userid:userid
-   } )
-        .then((response) => {
+  // Axios.post(process.env.REACT_APP_API + '/qrscans', {
+  //   qrData:result.text,
+  //   userid:userid
+  //  } )
+  //       .then((response) => {
         
-        })
-        .catch((error) => {
-          // Handle any error that occurred during the request
-          console.error(error);
-        });
-        navigate('/PageSelectBeverage', { replace: true });
+  //       })
+  //       .catch((error) => {
+  //         // Handle any error that occurred during the request
+  //         console.error(error);
+  //       });
+  //       navigate('/PageSelectBeverage', { replace: true });
 
 // if(result.text !== '' && from === '/PageSelectBeverage'){
 //   Axios.post(process.env.REACT_APP_API + '/qrscan', {
