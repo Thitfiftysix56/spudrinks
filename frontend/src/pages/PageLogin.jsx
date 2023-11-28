@@ -146,7 +146,7 @@ function PageLogin() {
       md: '0',
       sm: '10px',
       xs: '10px'}}}>
-    <ColorButton fullWidth variant="contained" sx={{color:'#ffffff'}} onClick={() => login()}>เข้าสู่ระบบ</ColorButton>
+    <ColorButton fullWidth  variant="contained" sx={{color:'#ffffff'}} onClick={() => login()}>เข้าสู่ระบบ</ColorButton>
     </Box>
   </Grid>
   <Grid item xs={4} sm={8} md={6}>
@@ -158,7 +158,7 @@ function PageLogin() {
       sm: '10px',
       xs: '10px'}}}>
   <Link to="/PageRegister" style={{textDecoration: 'none'}}>
-    <ColorButton fullWidth variant="contained" sx={{color:'#ffffff'}}>สมัครสมาชิก</ColorButton>
+    <ColorButton  fullWidth variant="contained" sx={{color:'#ffffff'}}>สมัครสมาชิก</ColorButton>
     </Link>
     </Box>
   </Grid>

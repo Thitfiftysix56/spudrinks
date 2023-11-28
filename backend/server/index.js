@@ -371,6 +371,30 @@ app.get(process.env.API_PATH + 'GetBottleVolume' , (req,res) =>{
 })
 
 
+
+app.put(process.env.API_PATH +'Addvolum', (req, res) => {
+  const id = req.body.id;
+  const Name_Bottle = req.body.Name_Bottle;
+  const volumbottom = req.body.volumbottom;
+  // console.log(id)
+  // console.log(volumbottom)
+  db.query(
+        "UPDATE bottlevolume SET Volume_Bottle = ? WHERE Id_Bottle = ? ",
+    [volumbottom,id],
+        (err, result) => {
+      if (err) {
+        console.log("RegisUser>>>>>> : ",err)
+        return res.status(500).json({msg: 'Path RegisUser Server error'})  
+      }
+      else{
+        return res.status(200).json({msg: 'Insert Ok'})  
+      }
+    },
+  )
+  
+
+});
+
 app.post(process.env.API_PATH +'qrscan', (req, res) => {
   const data  = req.body.qrData;
   // const SOS  = req.body.SOS;

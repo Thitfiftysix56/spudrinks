@@ -107,12 +107,33 @@ const chartData = {
     ],
   };
   const handleBarClick = (event, elements) => {
-    if (elements.length > 0) {
+    // if (elements.length > 0) {
       const clickedIndex = elements[0].index;
       const clickedBottle = volume[clickedIndex];
-      console.log(`Clicked on bottle with ID ${clickedBottle.id}: ${clickedBottle.Name_Bottle}`);
-      // Add your click logic here
-    }
+      // console.log(`Clicked on bottle with ID ${clickedBottle.id}: ${clickedBottle.Name_Bottle}`);
+      Axios.put(process.env.REACT_APP_API + '/Addvolum',{
+        id:clickedBottle.id,
+        Name_Bottle:clickedBottle.Name_Bottle,
+        volumbottom: 700
+      })
+      .then((res) => {
+        setAlerts(true)
+        toast.success("ระบบได้ทำเพิ่มปริมาตรขวดเรียบร้อย");
+        setTimeout(function() {
+          navigate(0)
+          // localStorage.clear();
+        }, 3000);
+        // console.log(res)
+         })
+         .catch((err) => {
+          if(err.response.status === 400) {
+            toast.error("กรุณาลองใหม่อีกครั้ง");
+            navigate('/PageMannageBeverage')
+          } else {
+            console.log("err: ", err.response.data)
+          }
+        })
+    // }
   };
 
   const options = {
@@ -264,6 +285,11 @@ const handleCloseaaa = (event, reason) => {
   return (
     <>
  <ThemeProvider theme={theme}>
+ {alerts ? (
+        <ToastContainer draggable={false} transition={Zoom} autoClose={3000} />
+      ) : (
+        <></>
+      )}
  <Box sx={{ width:{lg:'100%',md:'100vw',sm:'100vw',xs:'100vw'},
             height:{lg:'120vh',md:'120vh',sm:'100%',xs:'100%'},background:"linear-gradient(to bottom, #cc0079, #d40e75, #dc1a72, #e3256e, #e92f6a, #ed3867, #f14163, #f54960, #f8525c, #fb5c59, #fd6556, #ff6e53)" , display:"flex",flexDirection:'column',alignItems:'center',justifyContent:'space-between'}}>
             
