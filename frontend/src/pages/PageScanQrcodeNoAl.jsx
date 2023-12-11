@@ -60,7 +60,8 @@ useEffect(() => {
       }else{
         if(data.text === "แดงมะนาวโซดา"){
             Axios.post(process.env.REACT_APP_API + '/qrscan', {
-          qrData:result.text,
+          // qrData:result.text,
+          qrData:data.text,
           userid:userid,
           // munu:data.text,
           bottom1:volume[0].Volume_Bottle - 90,
@@ -86,7 +87,8 @@ useEffect(() => {
               navigate('/', { replace: true });
         }else if(data.text === "เขียวมะนาวโซดา"){
           Axios.post(process.env.REACT_APP_API + '/qrscan', {
-            qrData:result.text,
+            // qrData:result.text,
+            qrData:data.text,
             userid:userid,
             // munu:data.text,
             bottom1:volume[0].Volume_Bottle,
@@ -112,7 +114,8 @@ useEffect(() => {
                 navigate('/', { replace: true });
         }else if(data.text === "สับปะรดมะนาวโซดา"){
           Axios.post(process.env.REACT_APP_API + '/qrscan', {
-            qrData:result.text,
+            // qrData:result.text,
+            qrData:data.text,
             userid:userid,
             // munu:data.text,
             bottom1:volume[0].Volume_Bottle ,
@@ -138,7 +141,8 @@ useEffect(() => {
                 navigate('/', { replace: true });
         }else if(data.text === "แดงโซดา"){
           Axios.post(process.env.REACT_APP_API + '/qrscan', {
-            qrData:result.text,
+            // qrData:result.text,
+            qrData:data.text,
             userid:userid,
             // munu:data.text,
             bottom1:volume[0].Volume_Bottle - 90,
@@ -164,7 +168,8 @@ useEffect(() => {
                 navigate('/', { replace: true });
         }else if(data.text === "เขียวโซดา"){
           Axios.post(process.env.REACT_APP_API + '/qrscan', {
-            qrData:result.text,
+            // qrData:result.text,
+            qrData:data.text,
             userid:userid,
             // munu:data.text,
             bottom1:volume[0].Volume_Bottle,
