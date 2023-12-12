@@ -87,6 +87,7 @@ function PageSelectBeverage() {
   const [Menus, setMenus] = React.useState("");
   const [sumAlgohol, setSumAlgohol] = useState([]);
   const [Succ, setSucc] = React.useState("");
+  const [volume, setVolume] = useState([]);
 // console.log("sumAlgohol",sumAlgohol)
 
 
@@ -124,6 +125,20 @@ console.log(thaiDate);
     socket.on("Succ", (data) => setSucc(data));
     socket.on("disconnect", () => setSucc("server disconnected"));
   }, []);
+
+  useEffect(() => {
+
+    Axios.get(process.env.REACT_APP_API + `/GetBottleVolume`)
+    .then((res) => {
+      setVolume(res.data)  
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+  
+ 
+}, [])
+
   const navigate = useNavigate()
   
   const handleOpenUserMenu = (event) => {
@@ -234,7 +249,7 @@ const handleCloseaaa = (event, reason) => {
 <Box sx={{marginRight:'20px'}}>
  
             <Link
-                to={totalAlcoholBeverage >= 36 ? "/PageSelectBeverage" : "/PageScanQrCode" }
+                to={totalAlcoholBeverage >= 36 || volume[0]?.Volume_Bottle <= 30 ||volume[1]?.Volume_Bottle <= 30 || volume[2]?.Volume_Bottle <= 30 || volume[3]?.Volume_Bottle <= 30 || volume[4]?.Volume_Bottle <= 30 || volume[5]?.Volume_Bottle <= 30 ? "/PageSelectBeverage" : "/PageScanQrCode" }
                 style={{ textDecoration: "none", color: "#ffffff" }}
                 state={{ from: location.pathname , userid : IdUser[0].ID_Person , Algohol : IdUser[0].Alcohol_Beverage}}
               >
@@ -248,6 +263,10 @@ const handleCloseaaa = (event, reason) => {
                 totalAlcoholBeverage >= 36 ? <Snackbar open={openaaa} autoHideDuration={2000} onClose={handleCloseaaa}>
                 <Alert onClose={handleCloseaaa} severity="error" sx={{ width: '100%' }}>
                   ไม่สามารถสั่งเครื่องดื่มได้เนื่องจากแอลกอฮอล์เกิน
+                </Alert>
+              </Snackbar> : volume[0]?.Volume_Bottle <= 30 ||volume[1]?.Volume_Bottle <= 30 || volume[2]?.Volume_Bottle <= 30 || volume[3]?.Volume_Bottle <= 30 || volume[4]?.Volume_Bottle <= 30 || volume[5]?.Volume_Bottle <= 30 ? <Snackbar open={openaaa} autoHideDuration={2000} onClose={handleCloseaaa}>
+                <Alert onClose={handleCloseaaa} severity="error" sx={{ width: '100%' }}>
+                ไม่สามารถสั่งเครื่องดื่มได้เนื่องมีส่วนผสมบางตัวใกล้หมด
                 </Alert>
               </Snackbar> : ''
               }
