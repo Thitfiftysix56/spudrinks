@@ -16,25 +16,7 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import "react-toastify/dist/ReactToastify.css";
 
-const CssTextField = styled(TextField)({
-  "& label.Mui-focused": {
-    color: "white",
-  },
-  "& .MuiInput-underline:after": {
-    borderBottomColor: "white",
-  },
-  "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-      borderColor: "white",
-    },
-    "&:hover fieldset": {
-      borderColor: "white",
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: "white",
-    },
-  },
-});
+
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText("#ffffff"),
@@ -75,44 +57,34 @@ function PageMicrophone() {
     // socket.on("disconnect", () => setMenus("server disconnected"));
   }, []);
 
- 
-
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
   }
 
- 
-
   const Sos = () => {
-    resetTranscript()
+    resetTranscript();
     if (isToggled) {
       audioRef.current.pause();
       setSos(sos === "sos" ? "nosos" : "sos");
-      Axios.post(process.env.REACT_APP_API + '/sos', {
-        SOS:sos,
-     
-       } )
-            .then((response) => {
-             
-            })
-            .catch((error) => {
-              // Handle any error that occurred during the request
-              console.error(error);
-            });
+      Axios.post(process.env.REACT_APP_API + "/sos", {
+        SOS: sos,
+      })
+        .then((response) => {})
+        .catch((error) => {
+          // Handle any error that occurred during the request
+          console.error(error);
+        });
     } else {
       audioRef.current.play();
       setSos(sos === "sos" ? "nosos" : "sos");
-      Axios.post(process.env.REACT_APP_API + '/sos', {
-        SOS:sos,
-     
-       } )
-            .then((response) => {
-             
-            })
-            .catch((error) => {
-              // Handle any error that occurred during the request
-              console.error(error);
-            });
+      Axios.post(process.env.REACT_APP_API + "/sos", {
+        SOS: sos,
+      })
+        .then((response) => {})
+        .catch((error) => {
+          // Handle any error that occurred during the request
+          console.error(error);
+        });
       toggleLoop();
     }
     setIsToggled(!isToggled);
@@ -123,21 +95,19 @@ function PageMicrophone() {
     setIsLooping(!isLooping);
   };
 
-  if(transcript !== ''){
-Axios.post(process.env.REACT_APP_API + '/qrscan', {
-    // SOS:sos,
-    Transcript:transcript
-   } )
-        .then((response) => {
-         
-        })
-        .catch((error) => {
-          // Handle any error that occurred during the request
-          console.error(error);
-        });
+  if (transcript !== "") {
+    Axios.post(process.env.REACT_APP_API + "/qrscan", {
+      // SOS:sos,
+      Transcript: transcript,
+    })
+      .then((response) => {})
+      .catch((error) => {
+        // Handle any error that occurred during the request
+        console.error(error);
+      });
   }
 
-  console.log("transcript",transcript)
+  // console.log("transcript", transcript);
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -250,12 +220,7 @@ Axios.post(process.env.REACT_APP_API + '/qrscan', {
               </Box>
             </Box>
           </Box>
-          {/* <p>Microphone: {listening ? 'on' : 'off'}</p>
-      <button onClick={SpeechRecognition.startListening}>Start</button>
-      <button onClick={SpeechRecognition.stopListening}>Stop</button>
-      <button onClick={resetTranscript}>Reset</button>
-      <p>{transcript}</p> */}
-      {/* <p>{transcript}</p> */}
+ 
           <Footer />
         </Box>
       </ThemeProvider>

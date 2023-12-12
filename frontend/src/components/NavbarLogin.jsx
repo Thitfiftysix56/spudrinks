@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -9,19 +9,16 @@ import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import LoginIcon from "@mui/icons-material/Login";
 import IconButton from "@mui/material/IconButton";
-import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
-import { useNavigate ,useLocation  } from 'react-router-dom';
-import Axios from 'axios'
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
-
-
-
+import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
+import { useNavigate, useLocation } from "react-router-dom";
+import Axios from "axios";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 const ColorButton = styled(Button)(({ theme }) => ({
-  color: theme.palette.getContrastText('#ffffff'),
+  color: theme.palette.getContrastText("#ffffff"),
   backgroundColor: "#f54960",
-  '&:hover': {
+  "&:hover": {
     backgroundColor: "#ed3867",
   },
 }));
@@ -39,31 +36,26 @@ function NavbarLogin() {
   const handleClick = () => {
     setOpenaaa(true);
   };
-  
+
   const handleCloseaaa = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
-  
+
     setOpenaaa(false);
   };
 
   useEffect(() => {
-
     Axios.get(process.env.REACT_APP_API + `/GetBottleVolume`)
-    .then((res) => {
-      setVolume(res.data)  
-    })
-    .catch((err) => {
-      console.error(err)
-    })
-  
- 
-}, [])
+      .then((res) => {
+        setVolume(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
-
-console.log("volume" , volume)
-
+  // console.log("volume", volume);
 
   return (
     <>
@@ -107,28 +99,66 @@ console.log("volume" , volume)
               SPU DRINKS
             </Typography>
           </Box>
-          <Box sx={{display:'flex',justifyContent: 'center',alignItems: 'center' }}>
-            <Box sx={{marginRight:'20px'}}>
-            <Link
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Box sx={{ marginRight: "20px" }}>
+              <Link
                 // to="/PageScanQrcodeNoAl"
-                to={volume[0]?.Volume_Bottle <= 30 ||volume[1]?.Volume_Bottle <= 30 || volume[2]?.Volume_Bottle <= 30 || volume[3]?.Volume_Bottle <= 30 || volume[4]?.Volume_Bottle <= 30 || volume[5]?.Volume_Bottle <= 30  ? "/" : "/PageScanQrcodeNoAl"}
+                to={
+                  volume[0]?.Volume_Bottle <= 30 ||
+                  volume[1]?.Volume_Bottle <= 30 ||
+                  volume[2]?.Volume_Bottle <= 30 ||
+                  volume[3]?.Volume_Bottle <= 30 ||
+                  volume[4]?.Volume_Bottle <= 30 ||
+                  volume[5]?.Volume_Bottle <= 30
+                    ? "/"
+                    : "/PageScanQrcodeNoAl"
+                }
                 style={{ textDecoration: "none", color: "#ffffff" }}
                 state={{ from: location.pathname }}
               >
-              <IconButton  variant="contained" sx={{borderRadius:'50%',width:'55px',height:'55px',backgroundColor:'rgba(228 ,228 ,228 ,0.10)'}}  className="blob" onClick={handleClick}> 
-                <QrCodeScannerIcon />
-              </IconButton>
+                <IconButton
+                  variant="contained"
+                  sx={{
+                    borderRadius: "50%",
+                    width: "55px",
+                    height: "55px",
+                    backgroundColor: "rgba(228 ,228 ,228 ,0.10)",
+                  }}
+                  className="blob"
+                  onClick={handleClick}
+                >
+                  <QrCodeScannerIcon />
+                </IconButton>
               </Link>
 
-              {
-                volume[0]?.Volume_Bottle <= 30 ||volume[1]?.Volume_Bottle <= 30 || volume[2]?.Volume_Bottle <= 30 || volume[3]?.Volume_Bottle <= 30 || volume[4]?.Volume_Bottle <= 30 || volume[5]?.Volume_Bottle <= 30 ? <Snackbar open={openaaa} autoHideDuration={2000} onClose={handleCloseaaa}>
-                <Alert onClose={handleCloseaaa} severity="error" sx={{ width: '100%' }}>
-                  ไม่สามารถสั่งเครื่องดื่มได้เนื่องมีส่วนผสมบางตัวใกล้หมด
-                </Alert>
-              </Snackbar> : ''
-              }
-
-
+              {volume[0]?.Volume_Bottle <= 30 ||
+              volume[1]?.Volume_Bottle <= 30 ||
+              volume[2]?.Volume_Bottle <= 30 ||
+              volume[3]?.Volume_Bottle <= 30 ||
+              volume[4]?.Volume_Bottle <= 30 ||
+              volume[5]?.Volume_Bottle <= 30 ? (
+                <Snackbar
+                  open={openaaa}
+                  autoHideDuration={2000}
+                  onClose={handleCloseaaa}
+                >
+                  <Alert
+                    onClose={handleCloseaaa}
+                    severity="error"
+                    sx={{ width: "100%" }}
+                  >
+                    ไม่สามารถสั่งเครื่องดื่มได้เนื่องมีส่วนผสมบางตัวใกล้หมด
+                  </Alert>
+                </Snackbar>
+              ) : (
+                ""
+              )}
             </Box>
             <Box>
               <Link

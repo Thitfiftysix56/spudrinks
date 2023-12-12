@@ -17,8 +17,8 @@ import เขียวโซดา from "../imgs/เขียวโซดา.jpg
 import { io } from "socket.io-client";
 import Footer from "../components/Footer";
 import { QRCodeCanvas } from "qrcode.react";
-import { ToastContainer, toast, Zoom } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer, toast, Zoom } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const style = {
   position: "absolute",
@@ -42,23 +42,16 @@ const theme = createTheme({
 });
 
 function PageSelectBeverageLogin() {
-
-
-
-
-
-
-  
   const [Menu, setMenu] = React.useState("");
   const [Succ, setSucc] = React.useState("");
-  console.log('Succ',Succ);
-  const [alerts, setAlerts] = useState(false)
+  // console.log("Succ", Succ);
+  const [alerts, setAlerts] = useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => (xxx === true ? true : false);
   const xxx = Menu === "เรดเลดี้" ? true : false;
   const yyy = xxx === true ? true : false;
-  console.log(Menu === "เรดเลดี้" ? true : false);
+  // console.log(Menu === "เรดเลดี้" ? true : false);
   const [toggleState, setToggleState] = useState(false);
   function handleToggle() {
     setToggleState(Menu === "เรดเลดี้" ? true : false);
@@ -83,25 +76,28 @@ function PageSelectBeverageLogin() {
     socket.on("Succ", (data) => setSucc(data));
     socket.on("disconnect", () => setSucc("server disconnected"));
   }, []);
-  
+
   React.useEffect(() => {
-    if(Succ === 'success'){
+    if (Succ === "success") {
       setAlerts(true);
       toast.success("เมนูเสร็จเรียบร้อย");
-    }else{
-      console.log("error")
+    } else {
+      console.log("error");
     }
   }, [Succ]);
-  
 
   return (
     <>
       <ThemeProvider theme={theme}>
-      {alerts ? (
-        <ToastContainer draggable={false} transition={Zoom} autoClose={5000} />
-      ) : (
-        <></>
-      )}
+        {alerts ? (
+          <ToastContainer
+            draggable={false}
+            transition={Zoom}
+            autoClose={5000}
+          />
+        ) : (
+          <></>
+        )}
         <Box
           sx={{
             width: { lg: "100%", md: "100vw", sm: "100vw", xs: "100vw" },
@@ -144,11 +140,7 @@ function PageSelectBeverageLogin() {
               </Typography>
             </Box>
 
-            {
-            
-            
-           
-            Menu === "กรีนมาการิต้า" ||
+            {Menu === "กรีนมาการิต้า" ||
             Menu === "kritika" ||
             Menu === "กินมาการิต้า" ||
             Menu === "Green margarita" ||
@@ -160,16 +152,14 @@ function PageSelectBeverageLogin() {
             Menu === "ปีนมาการิต้า" ||
             Menu === "drosera" ||
             Menu === "จีนมาการิต้า" ||
-            Menu === "มาการิต้า"||
-            Menu === "กริชมาการิต้า"? (
+            Menu === "มาการิต้า" ||
+            Menu === "กริชมาการิต้า" ? (
               <Box sx={style}>
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                   สแกนเพื่อสั่งเมนู green margarita
                 </Typography>
                 <Box sx={{ mt: 2 }}>
-              
                   <QRCodeCanvas
-                  
                     value="green margarita"
                     size={300}
                     bgColor={"#ffffff"}
@@ -187,309 +177,259 @@ function PageSelectBeverageLogin() {
                   />
                 </Box>
               </Box>
-            ) : 
-              Menu === "โทรหา y" ||
+            ) : Menu === "โทรหา y" ||
               Menu === "Yellow howard" ||
               Menu === "Hello Hawaii" ||
               Menu === "Yellow ฮาวาย" ||
               Menu === "Yellow Car wilde" ||
               Menu === "Hello How are you" ||
               Menu === "Yellow Car WiFi" ||
-              Menu === "Yellow Hawaii"?
-              (
-                <Box sx={style}>
-                  <Typography id="modal-modal-title" variant="h6" component="h2">
-                    สแกนเพื่อสั่งเมนู Yellow Hawaii
-                  </Typography>
-                  <Box sx={{ mt: 2 }}>
-                
-                    <QRCodeCanvas
-                    
-                      value="Yellow Hawaii"
-                      size={300}
-                      bgColor={"#ffffff"}
-                      fgColor={"#000000"}
-                      level={"L"}
-                      includeMargin={false}
-                      imageSettings={{
-                        src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
-                        x: undefined,
-                        y: undefined,
-                        height: 50,
-                        width: 50,
-                        excavate: true,
-                      }}
-                    />
-                  </Box>
+              Menu === "Yellow Hawaii" ? (
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  สแกนเพื่อสั่งเมนู Yellow Hawaii
+                </Typography>
+                <Box sx={{ mt: 2 }}>
+                  <QRCodeCanvas
+                    value="Yellow Hawaii"
+                    size={300}
+                    bgColor={"#ffffff"}
+                    fgColor={"#000000"}
+                    level={"L"}
+                    includeMargin={false}
+                    imageSettings={{
+                      src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
+                      x: undefined,
+                      y: undefined,
+                      height: 50,
+                      width: 50,
+                      excavate: true,
+                    }}
+                  />
                 </Box>
-              ) :
-              
-                Menu === "Kamikaze" ||
-                Menu === "ถ้ามีคาราโอเกะ" ||
-                Menu === "คามิคาเซ่" ||
-                Menu === "เขามีคัทซี" ||
-                Menu === "คามิกาเซ่ที่" ||
-                Menu === "คามิกาเซ่" ?
-                (
-                  <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                      สแกนเพื่อสั่งเมนู Kamikaze
-                    </Typography>
-                    <Box sx={{ mt: 2 }}>
-                  
-                      <QRCodeCanvas
-                      
-                        value="Kamikaze"
-                        size={300}
-                        bgColor={"#ffffff"}
-                        fgColor={"#000000"}
-                        level={"L"}
-                        includeMargin={false}
-                        imageSettings={{
-                          src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
-                          x: undefined,
-                          y: undefined,
-                          height: 50,
-                          width: 50,
-                          excavate: true,
-                        }}
-                      />
-                    </Box>
-                  </Box>
-                ) :
-                
-                  Menu === "Red Lady" ||
-                  Menu === "เรดเลดี้" ||
-                  Menu === "ready" ||
-                  Menu === "lecithin e" ||
-                  Menu === "westworld" ||
-                  Menu === "เดดไลน์ที่" ||
-                  Menu === "Red suede" ?
-                  (
-                    <Box sx={style}>
-                      <Typography id="modal-modal-title" variant="h6" component="h2">
-                        สแกนเพื่อสั่งเมนู Red Lady
-                      </Typography>
-                      <Box sx={{ mt: 2 }}>
-                    
-                        <QRCodeCanvas
-                        
-                          value="Red Lady"
-                          size={300}
-                          bgColor={"#ffffff"}
-                          fgColor={"#000000"}
-                          level={"L"}
-                          includeMargin={false}
-                          imageSettings={{
-                            src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
-                            x: undefined,
-                            y: undefined,
-                            height: 50,
-                            width: 50,
-                            excavate: true,
-                          }}
-                        />
-                      </Box>
-                    </Box>
-                  ) :
-                  
-                    Menu === "วิสกี้ตุ๊ก" ||
-                    Menu === "resolve" ||
-                    Menu === "วิสกี้ซุป" ||
-                    Menu === "มิกกี้ซุป" ||
-                    Menu === "วิกกี้ซุป" ||
-                    Menu === "Nikki sixx" ||
-                    Menu === "วิธีสูบ" ||
-                    Menu === "วิสกี้ Super" ||
-                    Menu === "Whiskey ซุป" ||
-                    Menu === "วิสกี้ sueb" ||
-                    Menu === "มิกกี้ซุป" ||
-                    Menu === "Redtube" ||
-                    Menu === "whiskas" ||
-                    Menu === "vislube" ||
-                    Menu === "วิสกี้ superb" ||
-                    Menu === "วิธีซุป" ||
-                    Menu === "windshield" 
-                    ?
-                    (
-                      <Box sx={style}>
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                          สแกนเพื่อสั่งเมนู wiskey soup
-                        </Typography>
-                        <Box sx={{ mt: 2 }}>
-                      
-                          <QRCodeCanvas
-                          
-                            value="wiskey soup"
-                            size={300}
-                            bgColor={"#ffffff"}
-                            fgColor={"#000000"}
-                            level={"L"}
-                            includeMargin={false}
-                            imageSettings={{
-                              src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
-                              x: undefined,
-                              y: undefined,
-                              height: 50,
-                              width: 50,
-                              excavate: true,
-                            }}
-                          />
-                        </Box>
-                      </Box>
-                    ) :
-                      Menu === "แดงมะนาวโซดา" 
-                      ?
-                      (
-                        <Box sx={style}>
-                          <Typography id="modal-modal-title" variant="h6" component="h2">
-                            สแกนเพื่อสั่งเมนู แดงมะนาวโซดา
-                          </Typography>
-                          <Box sx={{ mt: 2 }}>
-                        
-                            <QRCodeCanvas
-                            
-                              value="แดงมะนาวโซดา"
-                              size={300}
-                              bgColor={"#ffffff"}
-                              fgColor={"#000000"}
-                              level={"L"}
-                              includeMargin={false}
-                              imageSettings={{
-                                src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
-                                x: undefined,
-                                y: undefined,
-                                height: 50,
-                                width: 50,
-                                excavate: true,
-                              }}
-                            />
-                          </Box>
-                        </Box>
-                      ) :
-                      
-                        Menu === "เขียวมะนาวโซดา" 
-                        ?
-                        (
-                          <Box sx={style}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                              สแกนเพื่อสั่งเมนู เขียวมะนาวโซดา
-                            </Typography>
-                            <Box sx={{ mt: 2 }}>
-                          
-                              <QRCodeCanvas
-                              
-                                value="เขียวมะนาวโซดา"
-                                size={300}
-                                bgColor={"#ffffff"}
-                                fgColor={"#000000"}
-                                level={"L"}
-                                includeMargin={false}
-                                imageSettings={{
-                                  src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
-                                  x: undefined,
-                                  y: undefined,
-                                  height: 50,
-                                  width: 50,
-                                  excavate: true,
-                                }}
-                              />
-                            </Box>
-                          </Box>
-                        ) :
-                        
-                          Menu === "สับปะรดมะนาวโซดา" 
-                          ?
-                          (
-                            <Box sx={style}>
-                              <Typography id="modal-modal-title" variant="h6" component="h2">
-                                สแกนเพื่อสั่งเมนู สับปะรดมะนาวโซดา
-                              </Typography>
-                              <Box sx={{ mt: 2 }}>
-                            
-                                <QRCodeCanvas
-                                
-                                  value="สับปะรดมะนาวโซดา"
-                                  size={300}
-                                  bgColor={"#ffffff"}
-                                  fgColor={"#000000"}
-                                  level={"L"}
-                                  includeMargin={false}
-                                  imageSettings={{
-                                    src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
-                                    x: undefined,
-                                    y: undefined,
-                                    height: 50,
-                                    width: 50,
-                                    excavate: true,
-                                  }}
-                                />
-                              </Box>
-                            </Box>
-                          ) :
-                          
-                            Menu === "แดงโซดา" 
-                            ?
-                            (
-                              <Box sx={style}>
-                                <Typography id="modal-modal-title" variant="h6" component="h2">
-                                  สแกนเพื่อสั่งเมนู แดงโซดา
-                                </Typography>
-                                <Box sx={{ mt: 2 }}>
-                              
-                                  <QRCodeCanvas
-                                  
-                                    value="แดงโซดา"
-                                    size={300}
-                                    bgColor={"#ffffff"}
-                                    fgColor={"#000000"}
-                                    level={"L"}
-                                    includeMargin={false}
-                                    imageSettings={{
-                                      src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
-                                      x: undefined,
-                                      y: undefined,
-                                      height: 50,
-                                      width: 50,
-                                      excavate: true,
-                                    }}
-                                  />
-                                </Box>
-                              </Box>
-                            ) :
-                            
-                              Menu === "เขียวโซดา" 
-                              ?
-                              (
-                                <Box sx={style}>
-                                  <Typography id="modal-modal-title" variant="h6" component="h2">
-                                    สแกนเพื่อสั่งเมนู เขียวโซดา
-                                  </Typography>
-                                  <Box sx={{ mt: 2 }}>
-                                
-                                    <QRCodeCanvas
-                                    
-                                      value="เขียว โซดา"
-                                      size={300}
-                                      bgColor={"#ffffff"}
-                                      fgColor={"#000000"}
-                                      level={"L"}
-                                      includeMargin={false}
-                                      imageSettings={{
-                                        src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
-                                        x: undefined,
-                                        y: undefined,
-                                        height: 50,
-                                        width: 50,
-                                        excavate: true,
-                                      }}
-                                    />
-                                  </Box>
-                                </Box>
-                              ) :
-                              ""
-
-            }
+              </Box>
+            ) : Menu === "Kamikaze" ||
+              Menu === "ถ้ามีคาราโอเกะ" ||
+              Menu === "คามิคาเซ่" ||
+              Menu === "เขามีคัทซี" ||
+              Menu === "คามิกาเซ่ที่" ||
+              Menu === "คามิกาเซ่" ? (
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  สแกนเพื่อสั่งเมนู Kamikaze
+                </Typography>
+                <Box sx={{ mt: 2 }}>
+                  <QRCodeCanvas
+                    value="Kamikaze"
+                    size={300}
+                    bgColor={"#ffffff"}
+                    fgColor={"#000000"}
+                    level={"L"}
+                    includeMargin={false}
+                    imageSettings={{
+                      src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
+                      x: undefined,
+                      y: undefined,
+                      height: 50,
+                      width: 50,
+                      excavate: true,
+                    }}
+                  />
+                </Box>
+              </Box>
+            ) : Menu === "Red Lady" ||
+              Menu === "เรดเลดี้" ||
+              Menu === "ready" ||
+              Menu === "lecithin e" ||
+              Menu === "westworld" ||
+              Menu === "เดดไลน์ที่" ||
+              Menu === "Red suede" ? (
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  สแกนเพื่อสั่งเมนู Red Lady
+                </Typography>
+                <Box sx={{ mt: 2 }}>
+                  <QRCodeCanvas
+                    value="Red Lady"
+                    size={300}
+                    bgColor={"#ffffff"}
+                    fgColor={"#000000"}
+                    level={"L"}
+                    includeMargin={false}
+                    imageSettings={{
+                      src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
+                      x: undefined,
+                      y: undefined,
+                      height: 50,
+                      width: 50,
+                      excavate: true,
+                    }}
+                  />
+                </Box>
+              </Box>
+            ) : Menu === "วิสกี้ตุ๊ก" ||
+              Menu === "resolve" ||
+              Menu === "วิสกี้ซุป" ||
+              Menu === "มิกกี้ซุป" ||
+              Menu === "วิกกี้ซุป" ||
+              Menu === "Nikki sixx" ||
+              Menu === "วิธีสูบ" ||
+              Menu === "วิสกี้ Super" ||
+              Menu === "Whiskey ซุป" ||
+              Menu === "วิสกี้ sueb" ||
+              Menu === "มิกกี้ซุป" ||
+              Menu === "Redtube" ||
+              Menu === "whiskas" ||
+              Menu === "vislube" ||
+              Menu === "วิสกี้ superb" ||
+              Menu === "วิธีซุป" ||
+              Menu === "windshield" ? (
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  สแกนเพื่อสั่งเมนู wiskey soup
+                </Typography>
+                <Box sx={{ mt: 2 }}>
+                  <QRCodeCanvas
+                    value="wiskey soup"
+                    size={300}
+                    bgColor={"#ffffff"}
+                    fgColor={"#000000"}
+                    level={"L"}
+                    includeMargin={false}
+                    imageSettings={{
+                      src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
+                      x: undefined,
+                      y: undefined,
+                      height: 50,
+                      width: 50,
+                      excavate: true,
+                    }}
+                  />
+                </Box>
+              </Box>
+            ) : Menu === "แดงมะนาวโซดา" ? (
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  สแกนเพื่อสั่งเมนู แดงมะนาวโซดา
+                </Typography>
+                <Box sx={{ mt: 2 }}>
+                  <QRCodeCanvas
+                    value="แดงมะนาวโซดา"
+                    size={300}
+                    bgColor={"#ffffff"}
+                    fgColor={"#000000"}
+                    level={"L"}
+                    includeMargin={false}
+                    imageSettings={{
+                      src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
+                      x: undefined,
+                      y: undefined,
+                      height: 50,
+                      width: 50,
+                      excavate: true,
+                    }}
+                  />
+                </Box>
+              </Box>
+            ) : Menu === "เขียวมะนาวโซดา" ? (
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  สแกนเพื่อสั่งเมนู เขียวมะนาวโซดา
+                </Typography>
+                <Box sx={{ mt: 2 }}>
+                  <QRCodeCanvas
+                    value="เขียวมะนาวโซดา"
+                    size={300}
+                    bgColor={"#ffffff"}
+                    fgColor={"#000000"}
+                    level={"L"}
+                    includeMargin={false}
+                    imageSettings={{
+                      src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
+                      x: undefined,
+                      y: undefined,
+                      height: 50,
+                      width: 50,
+                      excavate: true,
+                    }}
+                  />
+                </Box>
+              </Box>
+            ) : Menu === "สับปะรดมะนาวโซดา" ? (
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  สแกนเพื่อสั่งเมนู สับปะรดมะนาวโซดา
+                </Typography>
+                <Box sx={{ mt: 2 }}>
+                  <QRCodeCanvas
+                    value="สับปะรดมะนาวโซดา"
+                    size={300}
+                    bgColor={"#ffffff"}
+                    fgColor={"#000000"}
+                    level={"L"}
+                    includeMargin={false}
+                    imageSettings={{
+                      src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
+                      x: undefined,
+                      y: undefined,
+                      height: 50,
+                      width: 50,
+                      excavate: true,
+                    }}
+                  />
+                </Box>
+              </Box>
+            ) : Menu === "แดงโซดา" ? (
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  สแกนเพื่อสั่งเมนู แดงโซดา
+                </Typography>
+                <Box sx={{ mt: 2 }}>
+                  <QRCodeCanvas
+                    value="แดงโซดา"
+                    size={300}
+                    bgColor={"#ffffff"}
+                    fgColor={"#000000"}
+                    level={"L"}
+                    includeMargin={false}
+                    imageSettings={{
+                      src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
+                      x: undefined,
+                      y: undefined,
+                      height: 50,
+                      width: 50,
+                      excavate: true,
+                    }}
+                  />
+                </Box>
+              </Box>
+            ) : Menu === "เขียวโซดา" ? (
+              <Box sx={style}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  สแกนเพื่อสั่งเมนู เขียวโซดา
+                </Typography>
+                <Box sx={{ mt: 2 }}>
+                  <QRCodeCanvas
+                    value="เขียว โซดา"
+                    size={300}
+                    bgColor={"#ffffff"}
+                    fgColor={"#000000"}
+                    level={"L"}
+                    includeMargin={false}
+                    imageSettings={{
+                      src: "https://campus.campus-star.com/app/uploads/2015/06/%E0%B8%95%E0%B8%A3%E0%B8%B2-%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%A7%E0%B8%B4%E0%B8%97%E0%B8%A2%E0%B8%B2%E0%B8%A5%E0%B8%B1%E0%B8%A2%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%9B%E0%B8%97%E0%B8%B8%E0%B8%A1-.png",
+                      x: undefined,
+                      y: undefined,
+                      height: 50,
+                      width: 50,
+                      excavate: true,
+                    }}
+                  />
+                </Box>
+              </Box>
+            ) : (
+              ""
+            )}
 
             <Box
               sx={{
